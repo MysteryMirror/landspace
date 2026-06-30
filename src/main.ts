@@ -17,7 +17,6 @@ const sections = Array.from(document.querySelectorAll<HTMLElement>(".panel"));
 const dots = Array.from(document.querySelectorAll<HTMLButtonElement>(".page-dot"));
 let activeSection = 0;
 let isSectionAnimating = false;
-let sectionUnlockTimer: number | undefined;
 
 type Particle = {
   x: number;
@@ -195,29 +194,48 @@ function setActiveDot(index: number) {
   });
 }
 
+function animateScrollTo(top: number, sectionIndex: number, duration = 0.5) {
+  activeSection = sectionIndex;
+  setActiveDot(activeSection);
+  isSectionAnimating = true;
+
+  gsap.killTweensOf(window);
+  gsap.to(window, {
+    duration,
+    ease: "power3.out",
+    scrollTo: { y: top, autoKill: false },
+    onComplete: () => {
+      window.scrollTo({ top, behavior: "auto" });
+      isSectionAnimating = false;
+      ScrollTrigger.update();
+    },
+  });
+}
+
 function goToSection(index: number) {
   const nextIndex = Math.max(0, Math.min(sections.length - 1, index));
   const section = sections[nextIndex];
   if (!section || isSectionAnimating || nextIndex === activeSection) return;
 
-  activeSection = nextIndex;
-  setActiveDot(activeSection);
-
   if (reduceMotion) {
     section.scrollIntoView();
+    activeSection = nextIndex;
+    setActiveDot(activeSection);
     return;
   }
 
-  isSectionAnimating = true;
-  window.clearTimeout(sectionUnlockTimer);
-  gsap.to(window, {
-    duration: 0.62,
-    ease: "power2.out",
-    scrollTo: { y: section.offsetTop, autoKill: false },
-  });
-  sectionUnlockTimer = window.setTimeout(() => {
-    isSectionAnimating = false;
-  }, 520);
+  animateScrollTo(section.offsetTop, nextIndex);
+}
+
+function getSectionForScrollPosition() {
+  const y = window.scrollY;
+  const lastIndex = sections.length - 1;
+  const lastTop = sections[lastIndex]?.offsetTop ?? 0;
+  const secondTop = sections[1]?.offsetTop ?? window.innerHeight;
+
+  if (y >= lastTop - 2) return lastIndex;
+  if (y >= secondTop / 2) return 1;
+  return 0;
 }
 
 function setupSectionNavigation() {
@@ -234,20 +252,38 @@ function setupSectionNavigation() {
     "wheel",
     (event) => {
       if (reduceMotion) return;
-      if (isSectionAnimating || Math.abs(event.deltaY) < 12) return;
+      if (Math.abs(event.deltaY) < 10) return;
 
       const lastIndex = sections.length - 1;
       const lastSectionTop = sections[lastIndex]?.offsetTop ?? 0;
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const y = window.scrollY;
+      const isInLastSection = y >= lastSectionTop - 2;
+      const willCrossLastSectionTop = event.deltaY < 0 && y + event.deltaY <= lastSectionTop + 2;
       const scrollingInsideLastSection =
-        activeSection === lastIndex &&
-        ((event.deltaY > 0 && window.scrollY < maxScroll - 2) ||
-          (event.deltaY < 0 && window.scrollY > lastSectionTop + 2));
+        !isSectionAnimating &&
+        isInLastSection &&
+        ((event.deltaY > 0 && y < maxScroll - 2) ||
+          (event.deltaY < 0 && y > lastSectionTop + 2 && !willCrossLastSectionTop));
 
-      if (scrollingInsideLastSection) return;
+      if (scrollingInsideLastSection) {
+        activeSection = lastIndex;
+        setActiveDot(lastIndex);
+        return;
+      }
 
       event.preventDefault();
-      goToSection(activeSection + (event.deltaY > 0 ? 1 : -1));
+      if (isSectionAnimating) return;
+
+      if (isInLastSection && willCrossLastSectionTop && y > lastSectionTop + 2) {
+        animateScrollTo(lastSectionTop, lastIndex, 0.24);
+        return;
+      }
+
+      const currentSection = getSectionForScrollPosition();
+      activeSection = currentSection;
+      setActiveDot(activeSection);
+      goToSection(currentSection + (event.deltaY > 0 ? 1 : -1));
     },
     { passive: false },
   );

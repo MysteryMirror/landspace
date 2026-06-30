@@ -24,7 +24,7 @@
 
 html {
   background: var(--black);
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scrollbar-width: none;
 }
 
@@ -506,7 +506,7 @@ h1 span {
 
 @media (max-width: 900px) {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   h1 {
