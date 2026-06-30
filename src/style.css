@@ -422,8 +422,9 @@ h1 span {
 }
 
 .icon-line--body {
-  fill: rgba(246, 245, 240, 0.18);
-  stroke-width: 1.2;
+  fill: rgba(246, 245, 240, 0.24);
+  stroke: rgba(246, 245, 240, 0.34);
+  stroke-width: 0.9;
 }
 
 .icon-cut {
@@ -443,30 +444,94 @@ h1 span {
 }
 
 .butterfly-crystal {
-  stroke: rgba(246, 245, 240, 0.28);
-  stroke-width: 1;
+  opacity: 0.94;
+  stroke: rgba(246, 245, 240, 0.08);
+  stroke-width: 0.4;
 }
 
 .butterfly-ghost {
-  fill: rgba(246, 245, 240, 0.11);
-  stroke: rgba(246, 245, 240, 0.22);
-  stroke-width: 1;
+  opacity: 0.82;
+  stroke: rgba(246, 245, 240, 0.14);
+  stroke-width: 0.55;
 }
 
-.shadow-haze {
-  fill: rgba(52, 65, 214, 0.18);
-  opacity: 0.86;
+.crystal-bloom {
+  opacity: 0.56;
+  mix-blend-mode: screen;
 }
 
-.shadow-core {
-  stroke: rgba(246, 245, 240, 0.08);
-  stroke-width: 1;
+.crystal-facet,
+.ghost-facet {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke: rgba(246, 245, 240, 0.44);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0.85;
 }
 
-.icon-smoke {
-  fill: rgba(246, 245, 240, 0.08);
+.crystal-facet--soft {
   stroke: rgba(246, 245, 240, 0.2);
-  stroke-width: 1;
+  stroke-width: 0.75;
+}
+
+.ghost-facet {
+  opacity: 0.78;
+  stroke: rgba(246, 245, 240, 0.26);
+  stroke-dasharray: 5 8;
+}
+
+.crystal-flare {
+  fill: rgba(246, 245, 240, 0.72);
+  opacity: 0.84;
+  transform-origin: center;
+}
+
+.crystal-flare--small {
+  opacity: 0.42;
+}
+
+.blackhole-halo {
+  opacity: 0.78;
+  mix-blend-mode: screen;
+}
+
+.blackhole-core {
+  filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.95));
+}
+
+.blackhole-ring {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke: rgba(246, 245, 240, 0.7);
+  stroke-linecap: round;
+  stroke-width: 2.1;
+  stroke-dasharray: 118 94;
+  filter: drop-shadow(0 0 14px rgba(52, 65, 214, 0.38));
+}
+
+.blackhole-ring--back {
+  opacity: 0.2;
+  stroke: rgba(246, 245, 240, 0.26);
+  stroke-dasharray: none;
+  stroke-width: 1.2;
+}
+
+.blackhole-ring--inner {
+  opacity: 0.36;
+  stroke: rgba(52, 65, 214, 0.58);
+  stroke-dasharray: 64 58;
+  stroke-width: 1.2;
+}
+
+.blackhole-shadow {
+  fill: rgba(0, 0, 0, 0.62);
+  opacity: 0.8;
+}
+
+.blackhole-spark {
+  fill: rgba(246, 245, 240, 0.26);
+  opacity: 0.72;
 }
 
 .product-line:hover .product-symbol svg {
@@ -479,14 +544,21 @@ h1 span {
   animation: iris-breathe 1.6s ease-in-out infinite;
 }
 
-.product-line:hover .icon-spark {
+.product-line:hover .icon-spark,
+.product-line:hover .crystal-flare {
   animation: icon-twinkle 1.8s ease-in-out infinite;
 }
 
 .product-line:hover .icon-line--ghost,
 .product-line:hover .butterfly-ghost,
-.product-line:hover .shadow-haze {
+.product-line:hover .ghost-facet,
+.product-line:hover .blackhole-halo {
   animation: phantom-drift 2.4s ease-in-out infinite;
+}
+
+.product-line:hover .blackhole-ring {
+  animation: blackhole-spin 3.4s linear infinite;
+  transform-origin: 110px 112px;
 }
 
 .product-copy {
@@ -849,6 +921,16 @@ h1 span {
   50% {
     opacity: 0.38;
     transform: translateX(4px);
+  }
+}
+
+@keyframes blackhole-spin {
+  0% {
+    transform: rotate(-13deg);
+  }
+
+  100% {
+    transform: rotate(347deg);
   }
 }
 
