@@ -7,6 +7,7 @@
       name="description"
       content="MysteryMirror 靈鏡，成立于 2010 年的非官方白帽组织。"
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>MysteryMirror 靈鏡</title>
   </head>
   <body>
@@ -36,10 +37,29 @@
         <h2 id="products-title" class="sr-only">产品线</h2>
         <div class="product-grid">
           <article class="product-line product-line--ink" data-product>
-            <div class="sigil" data-mark="M" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+            <div class="product-symbol product-symbol--eye" aria-hidden="true">
+              <svg viewBox="0 0 220 220" role="img">
+                <defs>
+                  <radialGradient id="eye-core" cx="50%" cy="50%" r="50%">
+                    <stop offset="0" stop-color="#f6f5f0" stop-opacity="0.95" />
+                    <stop offset="0.42" stop-color="#3441d6" stop-opacity="0.32" />
+                    <stop offset="1" stop-color="#000000" stop-opacity="0" />
+                  </radialGradient>
+                  <filter id="eye-glow" x="-35%" y="-35%" width="170%" height="170%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path class="icon-faint" d="M18 112C46 63 78 45 110 45s64 18 92 67c-28 49-60 67-92 67s-64-18-92-67Z" />
+                <path class="icon-line" d="M30 112C55 78 82 62 110 62s55 16 80 50c-25 34-52 50-80 50s-55-16-80-50Z" />
+                <path class="icon-line icon-line--thin" d="M54 112c17-17 36-25 56-25s39 8 56 25c-17 17-36 25-56 25s-39-8-56-25Z" />
+                <circle class="eye-iris" cx="110" cy="112" r="33" fill="url(#eye-core)" filter="url(#eye-glow)" />
+                <circle class="icon-cut" cx="110" cy="112" r="13" />
+                <path class="icon-spark" d="M142 75l10-17 10 17 17 10-17 10-10 17-10-17-17-10 17-10Z" />
+              </svg>
             </div>
             <div class="product-copy">
               <p>Oculus Sinister of Autin</p>
@@ -49,10 +69,34 @@
           </article>
 
           <article class="product-line product-line--mirror" data-product>
-            <div class="sigil" data-mark="L" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+            <div class="product-symbol product-symbol--butterfly" aria-hidden="true">
+              <svg viewBox="0 0 220 220" role="img">
+                <defs>
+                  <linearGradient id="crystal-wing" x1="18%" y1="18%" x2="78%" y2="90%">
+                    <stop offset="0" stop-color="#ffffff" stop-opacity="0.9" />
+                    <stop offset="0.34" stop-color="#d7d5ce" stop-opacity="0.55" />
+                    <stop offset="0.72" stop-color="#3441d6" stop-opacity="0.22" />
+                    <stop offset="1" stop-color="#ffffff" stop-opacity="0.12" />
+                  </linearGradient>
+                  <filter id="phantom-wing" x="-45%" y="-45%" width="190%" height="190%">
+                    <feGaussianBlur stdDeviation="5" />
+                  </filter>
+                  <filter id="crystal-glow" x="-35%" y="-35%" width="170%" height="170%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path class="butterfly-ghost" d="M119 96C148 42 186 42 202 70c13 23-7 52-56 74 39 16 53 38 39 56-19 23-50 2-67-58Z" filter="url(#phantom-wing)" />
+                <path class="butterfly-crystal" d="M101 96C72 42 34 42 18 70 5 93 25 122 74 144c-39 16-53 38-39 56 19 23 50 2 67-58Z" fill="url(#crystal-wing)" filter="url(#crystal-glow)" />
+                <path class="icon-line" d="M101 96C72 42 34 42 18 70 5 93 25 122 74 144c-39 16-53 38-39 56 19 23 50 2 67-58" />
+                <path class="icon-line icon-line--thin" d="M38 76l63 20-27 48m-39 52 39-52 28-2M70 56l4 88" />
+                <path class="icon-line icon-line--ghost" d="M119 96C148 42 186 42 202 70c13 23-7 52-56 74 39 16 53 38 39 56-19 23-50 2-67-58" />
+                <path class="icon-line icon-line--body" d="M110 76c-10 19-10 71 0 104 10-33 10-85 0-104Z" />
+                <path class="icon-spark" d="M78 56l7-12 7 12 12 7-12 7-7 12-7-12-12-7 12-7Z" />
+              </svg>
             </div>
             <div class="product-copy">
               <p>MysteryMirror</p>
@@ -62,10 +106,25 @@
           </article>
 
           <article class="product-line product-line--void" data-product>
-            <div class="sigil" data-mark="∴" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+            <div class="product-symbol product-symbol--shadow" aria-hidden="true">
+              <svg viewBox="0 0 220 220" role="img">
+                <defs>
+                  <filter id="shadow-blur" x="-35%" y="-35%" width="170%" height="170%">
+                    <feGaussianBlur stdDeviation="7" />
+                  </filter>
+                  <linearGradient id="shadow-fill" x1="26%" y1="10%" x2="78%" y2="92%">
+                    <stop offset="0" stop-color="#f6f5f0" stop-opacity="0.2" />
+                    <stop offset="0.5" stop-color="#3441d6" stop-opacity="0.15" />
+                    <stop offset="1" stop-color="#000000" stop-opacity="0" />
+                  </linearGradient>
+                </defs>
+                <path class="shadow-haze" d="M110 18 188 63v94l-78 45-78-45V63l78-45Z" filter="url(#shadow-blur)" />
+                <path class="shadow-core" d="M110 30 176 68v84l-66 38-66-38V68l66-38Z" fill="url(#shadow-fill)" />
+                <path class="icon-line" d="M110 30 176 68v84l-66 38-66-38V68l66-38Z" />
+                <path class="icon-line icon-line--thin" d="M110 56 153 81v56l-43 25-43-25V81l43-25Z" />
+                <path class="icon-line icon-line--ghost" d="M73 80c23-18 52-18 75 0-12 14-12 46 0 60-23 18-52 18-75 0 12-14 12-46 0-60Z" />
+                <path class="icon-smoke" d="M84 76c17 14 17 54 0 68 34 20 68-2 68-34S118 56 84 76Z" />
+              </svg>
             </div>
             <div class="product-copy">
               <p>Shadow</p>
@@ -81,8 +140,19 @@
           <h2 id="honors-title">HONORS</h2>
         </div>
         <div class="honor-list" data-honor-list></div>
+        <footer class="site-footer">
+          <span>MysteryMirror@2010-2026</span>
+          <button class="contact-link" type="button" data-contact-open>联系我们</button>
+        </footer>
       </section>
     </main>
+    <div class="contact-modal" data-contact-modal hidden>
+      <div class="contact-modal__backdrop" data-contact-close></div>
+      <div class="contact-modal__panel" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <button class="contact-modal__close" type="button" data-contact-close aria-label="关闭联系提示"></button>
+        <p id="contact-modal-title">不必我们，灵镜自然会出现</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

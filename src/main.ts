@@ -10,6 +10,9 @@ createIcons({ icons: { ArrowDown } });
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const scrollCue = document.querySelector<HTMLButtonElement>(".scroll-cue");
+const contactOpen = document.querySelector<HTMLButtonElement>("[data-contact-open]");
+const contactModal = document.querySelector<HTMLElement>("[data-contact-modal]");
+const contactCloseButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-contact-close]"));
 const honorList = document.querySelector<HTMLElement>("[data-honor-list]");
 const canvas = document.querySelector<HTMLCanvasElement>("#particle-field");
 const ctx = canvas?.getContext("2d", { alpha: true });
@@ -385,6 +388,32 @@ function setupProductTilt() {
   });
 }
 
+function setupContactModal() {
+  if (!contactOpen || !contactModal) return;
+
+  const closeModal = () => {
+    contactModal.hidden = true;
+    document.body.classList.remove("has-modal");
+    contactOpen.focus();
+  };
+
+  contactOpen.addEventListener("click", () => {
+    contactModal.hidden = false;
+    document.body.classList.add("has-modal");
+    contactModal.querySelector<HTMLButtonElement>(".contact-modal__close")?.focus();
+  });
+
+  contactCloseButtons.forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !contactModal.hidden) {
+      closeModal();
+    }
+  });
+}
+
 window.addEventListener("pointermove", (event) => {
   pointer.x = event.clientX;
   pointer.y = event.clientY;
@@ -403,3 +432,4 @@ drawParticles();
 setupSectionNavigation();
 setupMotion();
 setupProductTilt();
+setupContactModal();

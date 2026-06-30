@@ -1,0 +1,19 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="14" fill="#000000"/>
+  <path d="M32 7 53.65 19.5v25L32 57 10.35 44.5v-25L32 7Z" fill="url(#mirror)" stroke="rgba(246,245,240,.36)" stroke-width="1.35"/>
+  <path d="M20 43V22l12 15 12-15v21" stroke="#F6F5F0" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15 49 50 14" stroke="url(#sheen)" stroke-width="3.5" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="mirror" x1="12" y1="10" x2="54" y2="55" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F5F0" stop-opacity=".16"/>
+      <stop offset=".48" stop-color="#3441D6" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#000000" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="15" y1="49" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F5F0" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#F6F5F0" stop-opacity=".82"/>
+      <stop offset=".68" stop-color="#3441D6" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#F6F5F0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
