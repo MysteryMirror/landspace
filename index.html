@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MysteryMirror 靈鏡，成立于 2010 年的非官方白帽组织。"
+    />
+    <title>MysteryMirror 靈鏡</title>
+  </head>
+  <body>
+    <canvas id="particle-field" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="mirror-light" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="page-dots" aria-label="页面导航">
+      <button class="page-dot is-active" type="button" data-section-index="0" aria-label="前往首页"></button>
+      <button class="page-dot" type="button" data-section-index="1" aria-label="前往产品线"></button>
+      <button class="page-dot" type="button" data-section-index="2" aria-label="前往历史荣誉"></button>
+    </nav>
+    <main id="app">
+      <section class="panel hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero__center">
+          <h1 id="hero-title">MysteryMirror <span>靈鏡</span></h1>
+        </div>
+        <button class="scroll-cue" type="button" aria-label="前往产品线">
+          <i data-lucide="arrow-down" aria-hidden="true"></i>
+        </button>
+      </section>
+
+      <section class="panel products" id="products" aria-labelledby="products-title">
+        <h2 id="products-title" class="sr-only">产品线</h2>
+        <div class="product-grid">
+          <article class="product-line product-line--ink" data-product>
+            <div class="sigil" data-mark="M" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="product-copy">
+              <p>Oculus Sinister of Autin</p>
+              <h3>墨瞳</h3>
+              <span>舆情和情报全息监控系统</span>
+            </div>
+          </article>
+
+          <article class="product-line product-line--mirror" data-product>
+            <div class="sigil" data-mark="L" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="product-copy">
+              <p>MysteryMirror</p>
+              <h3>灵镜</h3>
+              <span>MysteryMirror major team</span>
+            </div>
+          </article>
+
+          <article class="product-line product-line--void" data-product>
+            <div class="sigil" data-mark="∴" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="product-copy">
+              <p>Shadow</p>
+              <h3>幽影</h3>
+              <span>红队利刃</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel honors" id="honors" aria-labelledby="honors-title">
+        <div class="honors__header">
+          <h2 id="honors-title">HONORS</h2>
+        </div>
+        <div class="honor-list" data-honor-list></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
